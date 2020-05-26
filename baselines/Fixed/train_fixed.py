@@ -14,7 +14,6 @@ parser.add_argument('--Val_Type', type=str, default='last_batch', help='options:
 parser.add_argument('--Loss_Type', type=str, default='MSE_sigmoid', help='options: MSE_sigmoid   MSE_no_sigmoid  BCEWithLogitsLoss   CrossEntropyLoss')
 parser.add_argument('--Data_Set', type=str, default='ml-20m', help='options: ml-20m ml-latest')
 parser.add_argument('--Dy_Emb_Num', type=int, default=2, help='options: 1, 2')
-parser.add_argument('--random_seed', type=int, default=3000, help='options: 1, 2, ...')
 args = parser.parse_args()
 
 Model_Gpu  = torch.cuda.is_available()
@@ -41,10 +40,6 @@ Val_Type     = args.Val_Type  # last_batch last_random
 Dy_Emb_Num = args.Dy_Emb_Num
 Loss_Type    = args.Loss_Type  # MSE_sigmoid   MSE_no_sigmoid  BCEWithLogitsLoss   CrossEntropyLoss
 
-random_seed = args.random_seed
-torch.manual_seed(random_seed)
-if Model_Gpu:
-    torch.cuda.manual_seed(random_seed)
 
 print('\n****************************************************************************************\n')
 print('os.getpid():   ', os.getpid())
